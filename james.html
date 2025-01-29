@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>202410645 - Tabisora James Brylle A. - IT1C</title>
+  <style>
+ :root {
+      --peppermint-green: #3eb489;
+      --light-peppermint: #a1e3c0;
+      --dark-peppermint: #2c8b66;
+      --background-color: #f4fdf9;
+      --text-color: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background: var(--peppermint-green);
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .navbar:hover {
+      background: var(--dark-peppermint);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    .navbar li {
+      margin: 0 1rem;
+      position: relative;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .navbar a:hover {
+      color: var(--light-peppermint);
+      transform: scale(1.1);
+    }
+
+    .navbar a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: white;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s;
+    }
+
+    .navbar a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, var(--light-peppermint), var(--peppermint-green));
+      color: white;
+      padding: 2rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      animation: typing 3s steps(30, end), blink 0.5s step-end infinite;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 4px solid white;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--dark-peppermint);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%) scale(0);
+      border-radius: 50%;
+      transition: transform 0.6s;
+    }
+
+    .btn:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .btn:hover {
+      background: var(--light-peppermint);
+      transform: scale(1.1);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .section {
+      padding: 4rem 2rem;
+      text-align: center;
+      animation: slideIn 1.5s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateX(-50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--peppermint-green);
+      position: relative;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      background: var(--peppermint-green);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: underlineExpand 0.8s ease-in-out;
+    }
+
+    @keyframes underlineExpand {
+      0% { width: 0; }
+      100% { width: 50px; }
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 1rem auto;
+      border: 5px solid var(--light-peppermint);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .profile-pic:hover {
+      transform: rotate(10deg) scale(1.05);
+    }
+
+    .skills-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .skill-item {
+      background: var(--peppermint-green);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-item::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.2);
+      transition: width 0.4s;
+    }
+
+    .skill-item:hover::before {
+      width: 100%;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-10px) scale(1.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .project-item {
+      background: var(--light-peppermint);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, background 0.3s;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+
+    .project-item img {
+      width: 40%;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .project-item:hover {
+      transform: rotateY(10deg) rotateX(10deg) scale(1.1);
+      background: var(--dark-peppermint);
+      color: white;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border: 1px solid var(--light-peppermint);
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: var(--peppermint-green);
+      outline: none;
+      box-shadow: 0 0 10px var(--peppermint-green);
+    }
+
+    form button {
+      width: 100%;
+      background: var(--peppermint-green);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    form button:hover {
+      background: var(--dark-peppermint);
+      transform: translateY(-5px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--peppermint-green);
+      color: white;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    .cont p {
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 20px; 
+    }
+
+    footer p::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: white;
+      margin-right: 10px;
+      border-radius: 50%;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.5; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <header class="hero" id="home">
+    <h1>WELCOME TO MY PORTFOLIO!</h1>
+    <h2>James Brylle A. Tabisora</h2>
+    <p>Information Technology Student</p>
+    <a href="https://drive.google.com/file/d/1UPlmKIiEXNzw1iNGLa1pSKyP0xDTYDsB/view?usp=drivesdk" class="btn">RESUME</a>
+  </header>
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <img src="bai.jpg" alt="Profile Picture" class="profile-pic">
+    <p>Hi there, I'm Brylle, and I enjoy playing hoops and listening to music. I work hard and am a courteous delivery rider.</p>
+  </section>
+  <section id="skills" class="section">
+    <h2>Programming Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item">C++</div>
+      <div class="skill-item">CSS</div>
+      <div class="skill-item">HTML</div>
+    </div>
+  </section>
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-item"> <img src="1.jpg" alt="Project 1"><p>A C++ Application that shows the 10 Informations for each continent and its country.</p></div>
+      <div class="project-item"> <img src="2.jpg" alt="Project 1"><p>A C++ Application Console Game, Guess the Number.</p></div>
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <div class="cont">
+      <h2>Contact</h2>
+     <p> <a href="" class="btn">FACEBOOK</a></p>
+      <p> <a href="https://www.instagram.com/abc.bry?igsh=N29lZ3Y5YjM5dHln" class="btn">INSTAGRAM</a></p>
+      </form>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2025 James Brylle Tabisora. All rights reserved.</p>
+  </footer>
+</body>
+</html>
